@@ -1800,7 +1800,8 @@ typedef enum
     /** \brief Buffer type used for FEI input frame level parameters */
     VAEncMiscParameterTypeFEIFrameControl = 18,
     /** \brief encode extension buffer, ect. MPEG2 Sequence extenstion data */
-    VAEncMiscParameterTypeExtensionData = 19
+    VAEncMiscParameterTypeExtensionData = 19,
+    VAEncMiscParameterTypeMultiPassPerPAKOutput = 20
 } VAEncMiscParameterType;
 
 /** \brief Packed header type. */
@@ -4529,6 +4530,16 @@ typedef struct _VAPictureHEVC
     /** \brief Reserved bytes for future use, must be zero */
     uint32_t                va_reserved[VA_PADDING_LOW];
 } VAPictureHEVC;
+
+typedef struct _VAEncMiscParameterBufferMultiPassRePAKOutput {
+    /** \brief Type. Shall be set to #VAEncMiscParameterTypeMultiPassRePAKOutput. */
+    VAEncMiscParameterType type;
+    
+    uint8_t                num_passes;
+    VASurfaceID            reconstructed_pictures[8];
+    VABufferID             coded_buffers[8];
+
+} VAEncMiscParameterBufferMultiPassRePAKOutput;
 
 /* flags in VAPictureHEVC could be OR of the following */
 #define VA_PICTURE_HEVC_INVALID                 0x00000001
