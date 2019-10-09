@@ -4538,6 +4538,7 @@ typedef struct _VAEncMiscParameterBufferMultiPassRePAKOutput {
     uint8_t                num_passes;
     VASurfaceID            reconstructed_pictures[8];
     VABufferID             coded_buffers[8];
+    VABufferID             cu_stat; // for the 0st pass
 
 } VAEncMiscParameterBufferMultiPassRePAKOutput;
 
